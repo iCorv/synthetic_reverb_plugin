@@ -36,9 +36,6 @@
 ehthumbs.db
 Thumbs.db
 
-# Xcode 
-*.xcodeproj
-
 # Prerequisites
 *.d
 
