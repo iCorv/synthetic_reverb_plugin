@@ -1,6 +1,6 @@
 #include "m_pd.h"
 
-#define buffSize 44100*4
+#define BUFFSIZE 44100
 
 static t_class *stp_delay_tilde_class;
 
@@ -11,10 +11,10 @@ typedef struct stp_delay_tilde
     t_outlet* x_out;
     t_int rptr;
     t_int wptr;
-	t_sample buffer[buffSize];
-	//t_int bufIdx;
+	t_sample* buffer;
 
 } stp_delay_tilde;
+
 
 t_int *stp_delay_tilde_perform(t_int *w)
 {
@@ -25,11 +25,11 @@ t_int *stp_delay_tilde_perform(t_int *w)
     int i;
 
     for(i=0; i<n; i++) {
-    	x->buffer[ x->wptr++] = in[i];
+    	x->buffer[x->wptr++] = in[i];
     	out[i] = x->buffer[x->rptr++];
 
-    	//if ((x->wptr - (int) x->buffer) >= buffSize) { x->wptr -= buffSize;}
-    	//if ((x->rptr - (int) x->buffer) >= buffSize) { x->rptr -= buffSize;}
+    	if (x->wptr>=(BUFFSIZE-1)) {x->wptr = 0;}
+    	if (x->rptr>=(BUFFSIZE-1)) {x->rptr = 0;}
 
     }
 
@@ -45,15 +45,7 @@ void stp_delay_tilde_dsp(stp_delay_tilde *x, t_signal **sp)
 void stp_delay_tilde_free(stp_delay_tilde *x)
 {
     outlet_free(x->x_out);
-}
-
-void initArrayWithZeros(t_sample *myArray, int length)
-{
-	int index = 0;
-	while(index < length){
-		myArray[index] = 0;
-		index++;
-	}
+    free(x->buffer);
 }
 
 void *stp_delay_tilde_new(t_floatarg f)
@@ -62,22 +54,20 @@ void *stp_delay_tilde_new(t_floatarg f)
 
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
-    x-> rptr= x->buffer;
-    x-> wptr = x->buffer;
-    initArrayWithZeros(x->buffer, buffSize);
+    x-> rptr = 0;
+    x-> wptr = 0;
+    x->buffer = (t_sample *) calloc (BUFFSIZE , sizeof(t_sample));
     return (void *)x;
 }
 
 void stp_delay_set(stp_delay_tilde *x, int delay)
 {
     x->rptr = delay;
-   // while (x->rptr < x->buffer) {x->rptr+=buffSize;}
-    if (x->rptr>256) {
+    if (x->rptr>=(BUFFSIZE-1)) {
     	x->rptr = 0;
     }
+
 }
-
-
 
 void stp_delay_tilde_setup(void)
 {
