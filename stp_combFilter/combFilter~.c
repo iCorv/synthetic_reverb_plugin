@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define BUFFSIZE 44100
+#define BUFFSIZE 48000
 
 static t_class *combFilter_tilde_class;
 
@@ -39,16 +39,12 @@ t_int *combFilter_tilde_perform(t_int *w)
     		out[i]= in[i] + (x->fb * x->lpOut);
     		x->buffer[x->wptr]=out[i];
     		x->rptr = x->wptr - x->delaySample;
-    		if (x->rptr < 0){
-    			x->rptr+=BUFFSIZE-1;
-    		}
+    		if (x->rptr < 0) x->rptr+=BUFFSIZE-1;
     		x->rpi = floor(x->rptr);
     		x->alpha = x->rptr - x->rpi;
-    		x->dOut = x->alpha * x->buffer[x->rpi] + (1-x->alpha) * x->buffer[x->rpi+1];
-
+    		x->dOut = x->alpha * x->buffer[x->rpi] + (1-x->alpha) * x->buffer[x->rpi+1];//
             x->lpOut = (1-x->damp) * x->dOut + x->damp * x->last_sample;
             x->last_sample = x->lpOut;
-
     		if (x->wptr>=(BUFFSIZE-1)) x->wptr = 0; else x->wptr+=1;
     }
 
@@ -96,15 +92,15 @@ void combFilterDelay_set(combFilter_tilde *x, float delay)
 
 void combFilterFeedback_set(combFilter_tilde *x, float fb)
 {
-    if (fb > 0.9) fb = 0.9;
-    if (fb < 0)  fb = 0;
+    if (fb >= 0.99) fb = 0.99;
+    if (fb <= 0) fb = 0;
 	x->fb = fb;
 
 }
 void combFilterLowpass_set(combFilter_tilde *x, t_float fc)
 {
-	if (fc > 0.9) fc = 0.9;
-	if (fc < 0) fc = 0;
+	if (fc >= 1) fc = 1;
+	if (fc <= 0) fc = 0;
     x-> damp = fc;
 }
 
