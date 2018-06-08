@@ -70,16 +70,16 @@ void *combFilter_tilde_new(t_floatarg f)
 
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
-    x-> rptr = 0;
+    x-> rptr = 0.0;
     x-> wptr = 0;
 	x-> fb = 0;
 	x-> lpOut = 0;
 	x-> damp = 0.1;
 	x-> dOut = 0;
 	x-> last_sample = 0;
-	x-> alpha = 0;
+	x-> alpha = 0.0;
 	x-> rpi = 0;
-	x-> delaySample = 0;
+	x-> delaySample = 0.0;
     x->buffer = (t_sample *) calloc (BUFFSIZE , sizeof(t_sample));
     return (void *)x;
 }
