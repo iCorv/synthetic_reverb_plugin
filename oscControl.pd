@@ -1,0 +1,7 @@
+#N canvas 168 177 450 300 10;
+#X obj 142 54 udpreceive 4001;
+#X obj 110 147 routeOSC /1 /2 /3 /4 /5 /6 /7 /8 /all;
+#X obj 253 94 routeOSC /1/feedback;
+#X obj 151 101 unpackOSC;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;
