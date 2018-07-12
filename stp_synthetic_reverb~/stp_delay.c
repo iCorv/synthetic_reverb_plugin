@@ -96,20 +96,22 @@ void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out,
 {
     for(int i = 0; i < vectorSize; i++)
     {
-        /*
         // w/ interpolation
         x-> s = tapi(x-> buffer_size, x->delay_in_samples, x-> buffer, x-> circ_p);
         out[i] = 0.5 * (in[i] + (x-> s));
-        *(x->circ_p) = in[i];
-        cdelay(x->buffer_size, x->buffer, &(x->circ_p));
-         */
-        
+        printf("%f \n", x-> s);
+        //*(x->circ_p) = in[i];
+        //cdelay(x->buffer_size, x->buffer, &(x->circ_p));
+        //out[i] = in[i];
+         
+        /*
         // w/o interpolation
         out[i] = x->buffer[(x->q + x->buffer_size)%(x->buffer_size+1)];
         x->buffer[x->q] = in[i];
 
         //printf("%f \n", out[i]);
         cdelay2(x->buffer_size, &(x->q));
+         */
     }
 }
 
