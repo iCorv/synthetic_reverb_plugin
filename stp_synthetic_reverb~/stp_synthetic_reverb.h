@@ -9,7 +9,7 @@
 
 typedef struct stp_synthetic_reverb
 {
-    stp_delay *delay;
+    //stp_delay *delay;
 
 } stp_synthetic_reverb;
 

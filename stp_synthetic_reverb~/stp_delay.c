@@ -1,37 +1,35 @@
-//
-//  stp_delay.c
-//  stp_synthetic_reverb~
-//
-//  Created by C.Jaedicke on 07.06.18.
-//  Copyright © 2018 Intrinsic Audio. All rights reserved.
-//
-
 #include "stp_delay.h"
 
-
-stp_delay *stp_delay_new(long _buffer_size)
+stp_delay *stp_delay_new(int delayInSamples)
 {
     stp_delay *x = (stp_delay *)malloc(sizeof(stp_delay));
-    
-    x-> buffer_size = _buffer_size;
+    x-> buffer_size = 44100;
     x-> buffer = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
     x-> circ_p = x-> buffer;
     x-> s = .0;
-    x-> delay_in_samples = .0;
+    x-> delay_in_samples = delayInSamples;
     x-> q = 0;
-    
-    for(int i = 0; i < x-> buffer_size + 1; i++)
-    {
-        x-> buffer[i] = .0;
-    }
-    
     return x;
 }
 
 void stp_delay_free(stp_delay *x)
 {
-    //free(x->buffer);
+    free(x->buffer);
     free(x);
+}
+
+void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
+{
+    int i = 0;
+    while(i < vectorSize)
+    {
+        *(x->circ_p) = in[i];
+        x-> s = tapi(x-> buffer_size, x->delay_in_samples, x-> buffer, x-> circ_p);
+        //out[i] = 0.5 * (in[i] + (x-> s));
+        out[i] = (x-> s);
+        cdelay(x->buffer_size, x->buffer, &(x->circ_p));
+        i++;
+    }
 }
 
 void stp_delay_setDelay(stp_delay *x, float _delay_in_samples)
@@ -66,7 +64,7 @@ void wrap(long M, float *w, float **p)
 {
     if (*p > w + M)
         *p -= M + 1;          /* when *p=w+M+1, it wraps around to *p=w */
-        
+    
     if (*p < w)
         *p += M + 1;          /* when *p=w-1, it wraps around to *p=w+M */
 }
@@ -87,39 +85,8 @@ void wrap2(long M, int *q)
 {
     if (*q > M)
         *q -= M + 1;          /* when *q=M+1, it wraps around to *q=0 */
-        
+    
     if (*q < 0)
         *q += M + 1;          /* when *q=-1, it wraps around to *q=M */
 }
-
-void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
-{
-    for(int i = 0; i < vectorSize; i++)
-    {
-        // w/ interpolation
-        x-> s = tapi(x-> buffer_size, x->delay_in_samples, x-> buffer, x-> circ_p);
-        out[i] = 0.5 * (in[i] + (x-> s));
-        printf("%f \n", x-> s);
-        //*(x->circ_p) = in[i];
-        //cdelay(x->buffer_size, x->buffer, &(x->circ_p));
-        //out[i] = in[i];
-         
-        /*
-        // w/o interpolation
-        out[i] = x->buffer[(x->q + x->buffer_size)%(x->buffer_size+1)];
-        x->buffer[x->q] = in[i];
-
-        //printf("%f \n", out[i]);
-        cdelay2(x->buffer_size, &(x->q));
-         */
-    }
-}
-
-
-
-
-
-
-
-
 
