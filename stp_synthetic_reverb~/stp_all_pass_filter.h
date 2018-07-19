@@ -21,10 +21,11 @@ typedef struct stp_all_pass_filter
     float *delayline_out1;
     float *delayline_out2;
     float gain;
+    long buffer_size
     
 } stp_all_pass_filter;
 
-stp_all_pass_filter* stp_all_pass_filter_new();
+stp_all_pass_filter* stp_all_pass_filter_new(long _buffer_size);
 void stp_all_pass_filter_free(stp_all_pass_filter *x);
 void stp_all_pass_filter_perform(stp_all_pass_filter *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 void stp_all_pass_filter_set_delay(stp_all_pass_filter *x, float _delay_in_samples);

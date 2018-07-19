@@ -21,7 +21,7 @@ typedef struct stp_low_pass
     
 } stp_low_pass;
 
-stp_low_pass* stp_lowpass_new();
+stp_low_pass* stp_low_pass_new(void);
 void stp_low_pass_free(stp_low_pass *x);
 void stp_low_pass_setCutoff(stp_low_pass *x, float _delay_in_samples);
 void stp_low_pass_perform(stp_low_pass *x, float *in, float *out, int vectorSize);

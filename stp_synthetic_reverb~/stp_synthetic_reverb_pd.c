@@ -97,7 +97,7 @@ void *stp_synthetic_reverb_tilde_new(t_floatarg f)
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
     x->delay = stp_delay_new(44100);
-    x->delay->delay_in_samples = f;
+    stp_delay_setDelay(x->delay, f);
     
     return (void *)x;
 }
@@ -105,7 +105,7 @@ void *stp_synthetic_reverb_tilde_new(t_floatarg f)
 void stp_synthetic_reverb_tilde_setDelay(stp_synthetic_reverb_tilde *x, float delay)
 {
     if(delay)
-        x->delay->delay_in_samples = delay;
+        stp_delay_setDelay(x->delay, delay);
 }
 
 /**

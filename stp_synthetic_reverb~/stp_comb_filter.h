@@ -10,23 +10,23 @@
 #define COMB_FILTER_H_
 
 #include "stp_delay.h"
-#include "stp_lowpass.h"
+#include "stp_low_pass.h"
 
-typedef struct comb_filter
+typedef struct stp_comb_filter
 {
     stp_delay *delayline;
-    stp_lowpass* lowpass;
+    stp_low_pass* lowpass;
     float feedback;
     float *delay_out;
     float *lowpass_out;
     
-} comb_filter;
+} stp_comb_filter;
 
-comb_filter* comb_filter_new(long _buffer_size);
-void comb_filter_free(comb_filter *x);
-void comb_filter_setFeedback( comb_filter *x, float _feedback);
-void comb_filter_setDelay( comb_filter *x, float _delay);
-void comb_filter_setCutoff (comb_filter *x, float _cutoff);
-void comb_filter_perform(comb_filter *x, float *in, float *out, int vectorSize);
+stp_comb_filter* stp_comb_filter_new(long _buffer_size);
+void stp_comb_filter_free(stp_comb_filter *x);
+void stp_comb_filter_setFeedback( stp_comb_filter *x, float _feedback);
+void stp_comb_filter_setDelay( stp_comb_filter *x, float _delay);
+void stp_comb_filter_setCutoff (stp_comb_filter *x, float _cutoff);
+void stp_comb_filter_perform(stp_comb_filter *x, float *in, float *out, int vectorSize);
 
 #endif /* COMB_FILTER_H_ */
