@@ -1,13 +1,13 @@
 #include "stp_delay.h"
 
-stp_delay *stp_delay_new(int delayInSamples)
+stp_delay *stp_delay_new(int _buffer_size)
 {
     stp_delay *x = (stp_delay *)malloc(sizeof(stp_delay));
-    x-> buffer_size = 44100;
+    x-> buffer_size = _buffer_size;
     x-> buffer = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
     x-> circ_p = x-> buffer;
     x-> s = .0;
-    x-> delay_in_samples = delayInSamples;
+    x-> delay_in_samples = .0;
     x-> q = 0;
     return x;
 }
