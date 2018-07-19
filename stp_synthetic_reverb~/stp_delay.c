@@ -75,18 +75,3 @@ void cdelay(long D, float *w, float **p)
     wrap(D, w, p);               /* when *p=w-1, it wraps around to *p=w+D */
 }
 
-void cdelay2(long D, int *q)
-{
-    (*q)--;                      /* decrement offset and wrap modulo-(D+1) */
-    wrap2(D, q);                 /* when *q=-1, it wraps around to *q=D */
-}
-
-void wrap2(long M, int *q)
-{
-    if (*q > M)
-        *q -= M + 1;          /* when *q=M+1, it wraps around to *q=0 */
-    
-    if (*q < 0)
-        *q += M + 1;          /* when *q=-1, it wraps around to *q=M */
-}
-

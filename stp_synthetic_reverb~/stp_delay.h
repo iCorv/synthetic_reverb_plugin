@@ -81,8 +81,4 @@ void wrap(long M, float *w, float **p);
 
 void cdelay(long D, float *w, float **p);
 
-void cdelay2(long D, int *q);
-
-void wrap2(long M, int *q);
-
 #endif /* stp_delay_h */
