@@ -11,6 +11,8 @@
 		844237661FB4A69E005ACA50 /* m_pd.h in Headers */ = {isa = PBXBuildFile; fileRef = 844237651FB4A69D005ACA50 /* m_pd.h */; };
 		84AEDB7920C2A91900256DE2 /* stp_synthetic_reverb.c in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDB7720C2A91900256DE2 /* stp_synthetic_reverb.c */; };
 		84AEDB7A20C2A91900256DE2 /* stp_synthetic_reverb.h in Headers */ = {isa = PBXBuildFile; fileRef = 84AEDB7820C2A91900256DE2 /* stp_synthetic_reverb.h */; };
+		BE15362021009A8700909512 /* stp_low_pass.h in Headers */ = {isa = PBXBuildFile; fileRef = BE15361E21009A8700909512 /* stp_low_pass.h */; };
+		BE15362121009A8700909512 /* stp_low_pass.c in Sources */ = {isa = PBXBuildFile; fileRef = BE15361F21009A8700909512 /* stp_low_pass.c */; };
 		BEA57D9E20C95F1600E28ACF /* stp_delay.h in Headers */ = {isa = PBXBuildFile; fileRef = BEA57D9C20C95F1600E28ACF /* stp_delay.h */; };
 		BEA57D9F20C95F1600E28ACF /* stp_delay.c in Sources */ = {isa = PBXBuildFile; fileRef = BEA57D9D20C95F1600E28ACF /* stp_delay.c */; };
 		BEA57DA220C95F4100E28ACF /* stp_comb_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = BEA57DA020C95F4100E28ACF /* stp_comb_filter.h */; };
@@ -25,6 +27,8 @@
 		84AEDB7720C2A91900256DE2 /* stp_synthetic_reverb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stp_synthetic_reverb.c; sourceTree = "<group>"; };
 		84AEDB7820C2A91900256DE2 /* stp_synthetic_reverb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stp_synthetic_reverb.h; sourceTree = "<group>"; };
 		84AEDB7B20C2ADC100256DE2 /* stp_defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stp_defines.h; sourceTree = "<group>"; };
+		BE15361E21009A8700909512 /* stp_low_pass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stp_low_pass.h; sourceTree = "<group>"; };
+		BE15361F21009A8700909512 /* stp_low_pass.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stp_low_pass.c; sourceTree = "<group>"; };
 		BEA57D9C20C95F1600E28ACF /* stp_delay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stp_delay.h; sourceTree = "<group>"; };
 		BEA57D9D20C95F1600E28ACF /* stp_delay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stp_delay.c; sourceTree = "<group>"; };
 		BEA57DA020C95F4100E28ACF /* stp_comb_filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stp_comb_filter.h; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		FA2927E31A899B4C005A2BA9 = {
 			isa = PBXGroup;
 			children = (
+				BE15361E21009A8700909512 /* stp_low_pass.h */,
+				BE15361F21009A8700909512 /* stp_low_pass.c */,
 				BEA57DA420C95F6E00E28ACF /* stp_all_pass_filter.h */,
 				BEA57DA520C95F6E00E28ACF /* stp_all_pass_filter.c */,
 				BEA57DA020C95F4100E28ACF /* stp_comb_filter.h */,
@@ -86,6 +92,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE15362021009A8700909512 /* stp_low_pass.h in Headers */,
 				BEA57D9E20C95F1600E28ACF /* stp_delay.h in Headers */,
 				844237661FB4A69E005ACA50 /* m_pd.h in Headers */,
 				BEA57DA620C95F6E00E28ACF /* stp_all_pass_filter.h in Headers */,
@@ -155,6 +162,7 @@
 				BEA57DA720C95F6E00E28ACF /* stp_all_pass_filter.c in Sources */,
 				BEA57DA320C95F4100E28ACF /* stp_comb_filter.c in Sources */,
 				841712CC2091E46A00B02D54 /* stp_synthetic_reverb_pd.c in Sources */,
+				BE15362121009A8700909512 /* stp_low_pass.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

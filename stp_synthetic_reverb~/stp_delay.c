@@ -1,6 +1,6 @@
 #include "stp_delay.h"
 
-stp_delay *stp_delay_new(int _buffer_size)
+stp_delay *stp_delay_new(long _buffer_size)
 {
     stp_delay *x = (stp_delay *)malloc(sizeof(stp_delay));
     x-> buffer_size = _buffer_size;

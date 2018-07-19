@@ -46,7 +46,7 @@ typedef struct stp_delay
  * @return a pointer to the newly created stp_delay object <br>
  */
 
-stp_delay *stp_delay_new(int _buffer_size);
+stp_delay *stp_delay_new(long _buffer_size);
 
 /**
  * @related stp_delay
