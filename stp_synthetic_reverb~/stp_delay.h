@@ -34,7 +34,6 @@ typedef struct stp_delay
     float delay_in_samples;
     long buffer_size;
     float* circ_p;
-    int q;
     float s;
 } stp_delay;
 

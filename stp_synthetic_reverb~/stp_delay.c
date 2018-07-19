@@ -8,7 +8,6 @@ stp_delay *stp_delay_new(long _buffer_size)
     x-> circ_p = x-> buffer;
     x-> s = .0;
     x-> delay_in_samples = .0;
-    x-> q = 0;
     return x;
 }
 
