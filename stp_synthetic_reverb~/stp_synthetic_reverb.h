@@ -51,6 +51,8 @@ void stp_synthetic_reverb_free(stp_synthetic_reverb *x);
 
 void stp_synthetic_reverb_perform(stp_synthetic_reverb *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vector_size);
 
-void stp_comb_filter_sum_up(stp_synthetic_reverb *x, int vector_size);
+void stp_synthetic_reverb_comb_filter_sum_up(stp_synthetic_reverb *x, int vector_size);
+
+void stp_synthetic_reverb_allocate_temp_buffer(stp_synthetic_reverb *x, int vector_size);
 
 #endif /* stp_synthetic_reverb_h */

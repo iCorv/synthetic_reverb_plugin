@@ -12,8 +12,12 @@
  * <br>
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "m_pd.h"
 #include "stp_delay.h"
+#include "stp_synthetic_reverb.h"
 
 static t_class *stp_synthetic_reverb_tilde_class;
 
@@ -32,8 +36,8 @@ typedef struct stp_synthetic_reverb_tilde
 {
     t_object  x_obj;
     t_sample f;
-    stp_delay *delay;
-    t_outlet*x_out;
+    stp_synthetic_reverb* synthetic_reverb;
+    t_outlet* x_out;
 } stp_synthetic_reverb_tilde;
 
 /**
@@ -52,7 +56,7 @@ t_int *stp_synthetic_reverb_tilde_perform(t_int *w)
     t_sample  *out =  (t_sample *)(w[3]);
     int n =  (int)(w[4]);
     
-    stp_delay_perform(x->delay, in, out, n);
+    //stp_delay_perform(x->delay, in, out, n);
     
     /* return a pointer to the dataspace for the next dsp-object */
     return (w+5);
@@ -68,6 +72,7 @@ t_int *stp_synthetic_reverb_tilde_perform(t_int *w)
 
 void stp_synthetic_reverb_tilde_dsp(stp_synthetic_reverb_tilde *x, t_signal **sp)
 {
+    stp_synthetic_reverb_allocate_temp_buffer(x-> synthetic_reverb, sp[0]->s_n);
     dsp_add(stp_synthetic_reverb_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 }
 
@@ -95,18 +100,21 @@ void *stp_synthetic_reverb_tilde_new(t_floatarg f)
     stp_synthetic_reverb_tilde *x = (stp_synthetic_reverb_tilde *)pd_new(stp_synthetic_reverb_tilde_class);
     
     //The main inlet is created automatically
-    x->x_out = outlet_new(&x->x_obj, &s_signal);
-    x->delay = stp_delay_new(44100);
-    stp_delay_setDelay(x->delay, f);
+    x->x_out = outlet_new(&x-> x_obj, &s_signal);
+    x-> synthetic_reverb = stp_synthetic_reverb_new(f);
+    //x->delay = stp_delay_new(44100);
+    //stp_delay_setDelay(x->delay, f);
     
     return (void *)x;
 }
 
+/*
 void stp_synthetic_reverb_tilde_setDelay(stp_synthetic_reverb_tilde *x, float delay)
 {
     if(delay)
         stp_delay_setDelay(x->delay, delay);
 }
+ */
 
 /**
  * @related stp_delay_tilde
@@ -124,7 +132,7 @@ void stp_synthetic_reverb_tilde_setup(void)
                                       A_DEFFLOAT, 0);
     
     class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_dsp, gensym("dsp"), 0);
-    class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_setDelay, gensym("delay"), A_DEFFLOAT,0);
+    //class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_setDelay, gensym("delay"), A_DEFFLOAT,0);
     
     CLASS_MAINSIGNALIN(stp_synthetic_reverb_tilde_class, stp_synthetic_reverb_tilde, f);
 }

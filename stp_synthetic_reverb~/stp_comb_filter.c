@@ -24,6 +24,7 @@ void stp_comb_filter_free(stp_comb_filter *x)
     free(x-> delay_out);
     free(x-> lowpass_out);
     stp_low_pass_free(x-> lowpass);
+    stp_delay_free(x-> delayline);
     free(x);
 }
 
@@ -44,11 +45,11 @@ void stp_comb_filter_setCutoff (stp_comb_filter *x, float _cutoff)
     stp_low_pass_setCutoff(x->lowpass, _cutoff);
 }
 
-void stp_comb_filter_perform(stp_comb_filter *x, float *in, float *out, int vectorSize)
+void stp_comb_filter_perform(stp_comb_filter *x, float *in, float *out, int vector_size)
 {
-    for (int i=0; i< vectorSize; i++){
+    for (int i=0; i< vector_size; i++){
         out[i] = in[i] + x->feedback * x->lowpass_out[i];
     }
-    stp_delay_perform(x->delayline, out, x->delay_out, vectorSize);
-    stp_low_pass_perform(x->lowpass, x->delay_out, x->lowpass_out, vectorSize);
+    stp_delay_perform(x->delayline, out, x->delay_out, vector_size);
+    stp_low_pass_perform(x->lowpass, x->delay_out, x->lowpass_out, vector_size);
 }

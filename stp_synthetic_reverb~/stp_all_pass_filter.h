@@ -21,7 +21,7 @@ typedef struct stp_all_pass_filter
     float *delayline_out1;
     float *delayline_out2;
     float gain;
-    long buffer_size
+    long buffer_size;
     
 } stp_all_pass_filter;
 
