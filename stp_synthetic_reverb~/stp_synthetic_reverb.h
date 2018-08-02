@@ -39,6 +39,7 @@ typedef struct stp_synthetic_reverb
     float* ap_buffer_1;
     float* ap_buffer_2;
     float* ap_buffer_3;
+    float* ap_buffer_4;
 
     float* comb_sum_buffer;
     
@@ -54,5 +55,9 @@ void stp_synthetic_reverb_perform(stp_synthetic_reverb *x, STP_INPUTVECTOR *in, 
 void stp_synthetic_reverb_comb_filter_sum_up(stp_synthetic_reverb *x, int vector_size);
 
 void stp_synthetic_reverb_allocate_temp_buffer(stp_synthetic_reverb *x, int vector_size);
+
+void stp_synthetic_reverb_set_feedback(stp_synthetic_reverb *x, float _feedback);
+
+void stp_synthetic_reverb_set_damping(stp_synthetic_reverb *x, float _damping);
 
 #endif /* stp_synthetic_reverb_h */

@@ -18,6 +18,12 @@
 #define comb7_delay comb1_delay + 441
 #define comb8_delay comb1_delay + 500.976
 
+#define ap_gain 0.5
+#define ap_1_delay 556.101
+#define ap_2_delay 441
+#define ap_3_delay 340.893
+#define ap_4_delay 224.91
+
 
 
 #ifdef STP_INPUTVECTOR_USE_FLOAT

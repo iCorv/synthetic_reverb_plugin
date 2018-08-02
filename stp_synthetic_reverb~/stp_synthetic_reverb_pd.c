@@ -108,13 +108,19 @@ void *stp_synthetic_reverb_tilde_new(t_floatarg f)
     return (void *)x;
 }
 
-/*
-void stp_synthetic_reverb_tilde_setDelay(stp_synthetic_reverb_tilde *x, float delay)
+
+void stp_synthetic_reverb_tilde_set_feedback(stp_synthetic_reverb_tilde *x, float feedback)
 {
-    if(delay)
-        stp_delay_setDelay(x->delay, delay);
+    if(feedback)
+        stp_synthetic_reverb_set_feedback(x->synthetic_reverb, feedback);
 }
- */
+
+void stp_synthetic_reverb_tilde_set_damping(stp_synthetic_reverb_tilde *x, float damping)
+{
+    if(damping)
+        stp_synthetic_reverb_set_damping(x->synthetic_reverb, damping);
+}
+ 
 
 /**
  * @related stp_delay_tilde
@@ -132,7 +138,8 @@ void stp_synthetic_reverb_tilde_setup(void)
                                       A_DEFFLOAT, 0);
     
     class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_dsp, gensym("dsp"), 0);
-    //class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_setDelay, gensym("delay"), A_DEFFLOAT,0);
+    class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_set_feedback, gensym("feedback"), A_DEFFLOAT, 0);
+    class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_set_damping, gensym("damping"), A_DEFFLOAT, 0);
     
     CLASS_MAINSIGNALIN(stp_synthetic_reverb_tilde_class, stp_synthetic_reverb_tilde, f);
 }

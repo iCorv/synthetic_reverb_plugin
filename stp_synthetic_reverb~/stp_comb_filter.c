@@ -30,19 +30,19 @@ void stp_comb_filter_free(stp_comb_filter *x)
     free(x);
 }
 
-void stp_comb_filter_setFeedback(stp_comb_filter *x, float _feedback)
+void stp_comb_filter_set_feedback(stp_comb_filter *x, float _feedback)
 {
     if (_feedback >= 0.99) _feedback = 0.99;
     if ( _feedback <= 0) _feedback = 0;
     x->feedback = _feedback;
 }
 
-void stp_comb_filter_setDelay(stp_comb_filter *x, float _delay)
+void stp_comb_filter_set_delay(stp_comb_filter *x, float _delay)
 {
     stp_delay_setDelay(x->delayline, _delay);
 }
 
-void stp_comb_filter_setCutoff (stp_comb_filter *x, float _cutoff)
+void stp_comb_filter_set_cutoff (stp_comb_filter *x, float _cutoff)
 {
     stp_low_pass_setCutoff(x->lowpass, _cutoff);
 }
