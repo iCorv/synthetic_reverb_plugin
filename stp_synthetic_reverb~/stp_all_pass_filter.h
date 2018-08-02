@@ -30,5 +30,6 @@ void stp_all_pass_filter_free(stp_all_pass_filter *x);
 void stp_all_pass_filter_perform(stp_all_pass_filter *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 void stp_all_pass_filter_set_delay(stp_all_pass_filter *x, float _delay_in_samples);
 void stp_all_pass_filter_set_gain(stp_all_pass_filter *x, float g);
+void stp_all_pass_filter_allocate_temp_buffer(stp_all_pass_filter *x, int vector_size);
 
 #endif /* stp_all_pass_filter_h */

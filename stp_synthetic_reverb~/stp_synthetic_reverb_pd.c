@@ -56,7 +56,7 @@ t_int *stp_synthetic_reverb_tilde_perform(t_int *w)
     t_sample  *out =  (t_sample *)(w[3]);
     int n =  (int)(w[4]);
     
-    //stp_delay_perform(x->delay, in, out, n);
+    stp_synthetic_reverb_perform(x->synthetic_reverb, in, out, n);
     
     /* return a pointer to the dataspace for the next dsp-object */
     return (w+5);

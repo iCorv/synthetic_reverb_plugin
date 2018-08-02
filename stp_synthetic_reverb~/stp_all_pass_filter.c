@@ -16,8 +16,10 @@ stp_all_pass_filter* stp_all_pass_filter_new(long _buffer_size)
     x-> gain = .0;
     x->delayline1 = stp_delay_new(x-> buffer_size);
     x->delayline2 = stp_delay_new(x-> buffer_size);
+    /*
     x->delayline_out1 = (float *) calloc (x->delayline1->buffer_size, sizeof(float));
     x->delayline_out2 = (float *) calloc (x->delayline2->buffer_size, sizeof(float));
+     */
     return (void *)x;
 }
 void stp_all_pass_filter_free(stp_all_pass_filter *x)
@@ -48,4 +50,9 @@ void stp_all_pass_filter_set_gain(stp_all_pass_filter *x, float g)
     if (g >= 1) g = 1;
     if (g <= 0) g = 0;
     x-> gain = g;
+}
+
+void stp_all_pass_filter_allocate_temp_buffer(stp_all_pass_filter *x, int vector_size) {
+    x->delayline_out1 = (float *) calloc (vector_size, sizeof(float));
+    x->delayline_out2 = (float *) calloc (vector_size, sizeof(float));
 }

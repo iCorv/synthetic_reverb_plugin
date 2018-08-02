@@ -28,7 +28,6 @@ void stp_comb_filter_setFeedback( stp_comb_filter *x, float _feedback);
 void stp_comb_filter_setDelay( stp_comb_filter *x, float _delay);
 void stp_comb_filter_setCutoff (stp_comb_filter *x, float _cutoff);
 void stp_comb_filter_perform(stp_comb_filter *x, float *in, float *out, int vector_size);
-
 void stp_comb_filter_allocate_temp_buffer(stp_comb_filter *x, int vector_size);
 
 #endif /* COMB_FILTER_H_ */

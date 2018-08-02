@@ -14,8 +14,10 @@ stp_comb_filter* stp_comb_filter_new(long _buffer_size)
     x->feedback = 0;
     x->lowpass = stp_low_pass_new();
     x->delayline = stp_delay_new(_buffer_size);
+    /*
     x->delay_out = (float *) calloc (x->delayline->buffer_size, sizeof(float));
     x->lowpass_out = (float *) calloc (x->delayline->buffer_size, sizeof(float));
+     */
     return (stp_comb_filter*)x;
 }
 
@@ -52,4 +54,9 @@ void stp_comb_filter_perform(stp_comb_filter *x, float *in, float *out, int vect
     }
     stp_delay_perform(x->delayline, out, x->delay_out, vector_size);
     stp_low_pass_perform(x->lowpass, x->delay_out, x->lowpass_out, vector_size);
+}
+
+void stp_comb_filter_allocate_temp_buffer(stp_comb_filter *x, int vector_size) {
+    x->delay_out = (float *) calloc (vector_size, sizeof(float));
+    x->lowpass_out = (float *) calloc (vector_size, sizeof(float));
 }
