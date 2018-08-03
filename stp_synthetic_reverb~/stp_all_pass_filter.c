@@ -9,13 +9,13 @@
 #include "stp_all_pass_filter.h"
 
 
-stp_all_pass_filter* stp_all_pass_filter_new(long _buffer_size)
+stp_all_pass_filter* stp_all_pass_filter_new()
 {
     stp_all_pass_filter *x = (stp_all_pass_filter*)malloc(sizeof(stp_all_pass_filter));
-    x-> buffer_size = _buffer_size;
     x-> gain = .0;
-    x->delayline1 = stp_delay_new(x-> buffer_size);
-    x->delayline2 = stp_delay_new(x-> buffer_size);
+    // max delay length is the length of the input vector, always < 44100
+    x->delayline1 = stp_delay_new(44100);
+    x->delayline2 = stp_delay_new(44100);
 
     return (void *)x;
 }

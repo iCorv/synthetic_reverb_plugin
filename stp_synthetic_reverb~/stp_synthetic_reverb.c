@@ -1,19 +1,20 @@
 #include "stp_synthetic_reverb.h"
 
-stp_synthetic_reverb *stp_synthetic_reverb_new(long _buffer_size)
+stp_synthetic_reverb *stp_synthetic_reverb_new()
 {
     stp_synthetic_reverb *x = (stp_synthetic_reverb *)malloc(sizeof(stp_synthetic_reverb));
-    x-> buffer_size = _buffer_size;
     
-    x-> comb_1 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_2 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_3 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_4 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_5 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_6 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_7 = stp_comb_filter_new(x-> buffer_size);
-    x-> comb_8 = stp_comb_filter_new(x-> buffer_size);
+    // initialize comb filter
+    x-> comb_1 = stp_comb_filter_new();
+    x-> comb_2 = stp_comb_filter_new();
+    x-> comb_3 = stp_comb_filter_new();
+    x-> comb_4 = stp_comb_filter_new();
+    x-> comb_5 = stp_comb_filter_new();
+    x-> comb_6 = stp_comb_filter_new();
+    x-> comb_7 = stp_comb_filter_new();
+    x-> comb_8 = stp_comb_filter_new();
     
+    // set delay of comb filter objects according to pre-calculated values in stp_defines
     stp_comb_filter_set_delay(x-> comb_1, comb1_delay);
     stp_comb_filter_set_delay(x-> comb_2, comb2_delay);
     stp_comb_filter_set_delay(x-> comb_3, comb3_delay);
@@ -23,37 +24,24 @@ stp_synthetic_reverb *stp_synthetic_reverb_new(long _buffer_size)
     stp_comb_filter_set_delay(x-> comb_7, comb7_delay);
     stp_comb_filter_set_delay(x-> comb_8, comb8_delay);
     
-    x-> ap_1 = stp_all_pass_filter_new(x-> buffer_size);
-    x-> ap_2 = stp_all_pass_filter_new(x-> buffer_size);
-    x-> ap_3 = stp_all_pass_filter_new(x-> buffer_size);
-    x-> ap_4 = stp_all_pass_filter_new(x-> buffer_size);
+    // initialize allpass filter
+    x-> ap_1 = stp_all_pass_filter_new();
+    x-> ap_2 = stp_all_pass_filter_new();
+    x-> ap_3 = stp_all_pass_filter_new();
+    x-> ap_4 = stp_all_pass_filter_new();
     
+    // set gain of allpass filter objects according to pre-calculated values in stp_defines
     stp_all_pass_filter_set_gain(x-> ap_1, ap_gain);
     stp_all_pass_filter_set_gain(x-> ap_2, ap_gain);
     stp_all_pass_filter_set_gain(x-> ap_3, ap_gain);
     stp_all_pass_filter_set_gain(x-> ap_4, ap_gain);
     
+    // set delay of allpass filter objects according to pre-calculated values in stp_defines
     stp_all_pass_filter_set_delay(x->ap_1, ap_1_delay);
     stp_all_pass_filter_set_delay(x->ap_2, ap_2_delay);
     stp_all_pass_filter_set_delay(x->ap_3, ap_3_delay);
     stp_all_pass_filter_set_delay(x->ap_4, ap_4_delay);
     
-    /*
-    x-> comb_buffer_1 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_2 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_3 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_4 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_5 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_6 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_7 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> comb_buffer_8 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    
-    x-> ap_buffer_1 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> ap_buffer_2 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> ap_buffer_3 = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    
-    x-> comb_sum_buffer = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    */
     return (void *)x;
 }
 
@@ -72,6 +60,7 @@ void stp_synthetic_reverb_free(stp_synthetic_reverb *x)
     free(x-> ap_buffer_1);
     free(x-> ap_buffer_2);
     free(x-> ap_buffer_3);
+    free(x-> ap_buffer_4);
     
     free(x-> comb_sum_buffer);
     

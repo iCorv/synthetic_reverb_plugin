@@ -8,16 +8,14 @@
 
 #include "stp_comb_filter.h"
 
-stp_comb_filter* stp_comb_filter_new(long _buffer_size)
+stp_comb_filter* stp_comb_filter_new()
 {
     stp_comb_filter *x = (stp_comb_filter*)malloc(sizeof(stp_comb_filter));
     x->feedback = 0;
     x->lowpass = stp_low_pass_new();
-    x->delayline = stp_delay_new(_buffer_size);
-    /*
-    x->delay_out = (float *) calloc (x->delayline->buffer_size, sizeof(float));
-    x->lowpass_out = (float *) calloc (x->delayline->buffer_size, sizeof(float));
-     */
+    // max delay length is the length of the input vector, always < 44100
+    x->delayline = stp_delay_new(44100);
+
     return (stp_comb_filter*)x;
 }
 

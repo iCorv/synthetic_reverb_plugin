@@ -85,6 +85,7 @@ void stp_synthetic_reverb_tilde_dsp(stp_synthetic_reverb_tilde *x, t_signal **sp
 
 void stp_synthetic_reverb_tilde_free(stp_synthetic_reverb_tilde *x)
 {
+    stp_synthetic_reverb_free(x-> synthetic_reverb);
     outlet_free(x->x_out);
 }
 
@@ -101,7 +102,7 @@ void *stp_synthetic_reverb_tilde_new(t_floatarg f)
     
     //The main inlet is created automatically
     x->x_out = outlet_new(&x-> x_obj, &s_signal);
-    x-> synthetic_reverb = stp_synthetic_reverb_new(f);
+    x-> synthetic_reverb = stp_synthetic_reverb_new();
     //x->delay = stp_delay_new(44100);
     //stp_delay_setDelay(x->delay, f);
     

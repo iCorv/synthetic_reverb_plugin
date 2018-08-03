@@ -22,7 +22,7 @@ typedef struct stp_comb_filter
     
 } stp_comb_filter;
 
-stp_comb_filter* stp_comb_filter_new(long _buffer_size);
+stp_comb_filter* stp_comb_filter_new();
 void stp_comb_filter_free(stp_comb_filter *x);
 void stp_comb_filter_set_feedback( stp_comb_filter *x, float _feedback);
 void stp_comb_filter_set_delay( stp_comb_filter *x, float _delay);

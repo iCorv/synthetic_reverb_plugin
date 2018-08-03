@@ -46,7 +46,7 @@ typedef struct stp_synthetic_reverb
     long buffer_size;
 } stp_synthetic_reverb;
 
-stp_synthetic_reverb *stp_synthetic_reverb_new(long _buffer_size);
+stp_synthetic_reverb *stp_synthetic_reverb_new();
 
 void stp_synthetic_reverb_free(stp_synthetic_reverb *x);
 
