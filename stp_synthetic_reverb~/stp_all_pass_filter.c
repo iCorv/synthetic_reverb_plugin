@@ -39,8 +39,8 @@ void stp_all_pass_filter_perform(stp_all_pass_filter *x, STP_INPUTVECTOR *in, ST
 }
 void stp_all_pass_filter_set_delay(stp_all_pass_filter *x, float _delay_in_samples)
 {
-    stp_delay_setDelay(x->delayline1, _delay_in_samples);
-    stp_delay_setDelay(x->delayline2, _delay_in_samples);
+    stp_delay_set_delay(x->delayline1, _delay_in_samples);
+    stp_delay_set_delay(x->delayline2, _delay_in_samples);
 }
 void stp_all_pass_filter_set_gain(stp_all_pass_filter *x, float g)
 {

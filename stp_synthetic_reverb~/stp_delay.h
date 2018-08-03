@@ -5,8 +5,8 @@
  * <br>
  * @brief Audio Object for adding delay to the input<br>
  * <br>
- * stp_delay allows for adding delay<br>
- * to any incoming audio signal. <br>
+ * stp_delay allows for delaying<br>
+ * any incoming audio signal. <br>
  * <br>
  */
 
@@ -24,17 +24,20 @@
 /**
  * @struct stp_delay
  * @brief A structure for a delay object <br>
- * @var stp::delay The parameter value for adjusting the <br>
+ * @var stp::buffer The buffer we save the incoming signal in <br>
+ * @var stp::delay_in_samples The parameter value for adjusting the <br>
  * delay of the incoming signal
+ * @var stp::buffer_size The size of the delay buffer <br>
+ * @var stp::circular_pointer Circular pointer to the delay buffer <br>
+ * @var stp::delay_sample The current sample from the delay buffer <br>
  */
-
 typedef struct stp_delay
 {
     float* buffer;              /**< Our delay buffer */
-    float delay_in_samples;
-    long buffer_size;
-    float* circ_p;
-    float s;
+    float delay_in_samples;     /**< Our delay in samples */
+    long buffer_size;           /**< Size of the delay buffer */
+    float* circular_pointer;    /**< Circular pointer to delay buffer */
+    float delay_sample;         /**< The current sample from the delay buffer */
 } stp_delay;
 
 /**
@@ -44,7 +47,6 @@ typedef struct stp_delay
  * the delay class
  * @return a pointer to the newly created stp_delay object <br>
  */
-
 stp_delay *stp_delay_new(long _buffer_size);
 
 /**
@@ -54,30 +56,74 @@ stp_delay *stp_delay_new(long _buffer_size);
  * The function frees the allocated memory<br>
  * of a delay object
  */
-
 void stp_delay_free(stp_delay *x);
 
 /**
  * @related stp_delay
- * @brief Performs the delay in realtime <br>
+ * @brief Performs the delay in realtime. <br>
  * @param x My delay object <br>
  * @param in The input vector <br>
  * @param out The output vector <br>
- * @param vectorSize The vectorSize <br>
- * The function stp_delay_perform performs adds the delay of <br>
- * the incoming signal and copies the result to the output vector <br>
+ * @param vector_size The size of the i/o vectors <br>
+ * The function stp_delay_perform delays any <br>
+ * incoming signal and copies the result to the output vector <br>
  */
+void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vector_size);
 
-void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
+/**
+ * @related stp_delay
+ * @brief Sets the delay time in samples with floating point precision. <br>
+ * @param x My delay object <br>
+ * @param _delay_in_samples The delay in samples <br>
+ * Sets the delay time in samples with floating point precision. <br>
+ * Delays exceeding the buffer size are handeled by setting the delay to zero. <br>
+ */
+void stp_delay_set_delay(stp_delay *x, float _delay_in_samples);
 
-void stp_delay_setDelay(stp_delay *x, float _delay_in_samples);
+/**
+ * @related stp_delay
+ * @brief Non-interpolating retrieval of samples in the delay buffer. <br>
+ * @param buffer_size Size of the total delay buffer <br>
+ * @param buffer_pointer Pointer to the delay buffer <br>
+ * @param circular_pointer Circular pointer iterating through the buffer <br>
+ * @param index Index of the sample we want to tap in <br>
+ * Non-interpolating retrieval of samples in the delay buffer. <br>
+ * @return A sample from the delay buffer. <br>
+ */
+float stp_delay_tap_into_buffer(long buffer_size, float *buffer_pointer, float *circular_pointer, int index);
 
-float tap(long D, float *w, float *p, int i);
+/**
+ * @related stp_delay
+ * @brief Interpolating retrieval of samples in the delay buffer. <br>
+ * @param buffer_size Size of the total delay buffer <br>
+ * @param delay_in_samples Desired non-integer delay <br>
+ * @param buffer_pointer Pointer to the delay buffer <br>
+ * @param circular_pointer Circular pointer iterating through the buffer <br>
+ * @param index Index of the sample we want to tap in <br>
+ * Interpolating retrieval of samples in the delay buffer. <br>
+ * Delays exceeding the buffer size are handeled by setting the delay to zero. <br>
+ * @return A interpolated sample from the delay buffer. <br>
+ */
+float stp_delay_interpolate_tap_into_buffer(long buffer_size, float delay_in_samples, float *buffer_pointer, float *circular_pointer);
 
-float tapi(long D, float d, float *w, float *p);
+/**
+ * @related stp_delay
+ * @brief Resets the circular pointer. <br>
+ * @param buffer_size Size of the total delay buffer <br>
+ * @param buffer_pointer Pointer to the delay buffer <br>
+ * @param circular_pointer Circular pointer iterating through the buffer <br>
+ * Resets the circular pointer to the start or end of the delay buffer. <br>
+ */
+void stp_delay_wrap_circular_pointer_to_start(long buffer_size, float *buffer_pointer, float **circular_pointer);
 
-void wrap(long M, float *w, float **p);
-
-void cdelay(long D, float *w, float **p);
+/**
+ * @related stp_delay
+ * @brief Decrements the circular pointer. <br>
+ * @param buffer_size Size of the total delay buffer <br>
+ * @param buffer_pointer Pointer to the delay buffer <br>
+ * @param circular_pointer Circular pointer iterating through the buffer <br>
+ * Decrements the circular pointer and calls the wrap function. <br>
+ */
+void stp_delay_decrement_circular_pointer(long buffer_size, float *buffer_pointer, float **circular_pointer);
 
 #endif /* stp_delay_h */

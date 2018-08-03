@@ -39,7 +39,7 @@ void stp_comb_filter_set_feedback(stp_comb_filter *x, float _feedback)
 
 void stp_comb_filter_set_delay(stp_comb_filter *x, float _delay)
 {
-    stp_delay_setDelay(x->delayline, _delay);
+    stp_delay_set_delay(x->delayline, _delay);
 }
 
 void stp_comb_filter_set_cutoff (stp_comb_filter *x, float _cutoff)

@@ -5,8 +5,8 @@ stp_delay *stp_delay_new(long _buffer_size)
     stp_delay *x = (stp_delay *)malloc(sizeof(stp_delay));
     x-> buffer_size = _buffer_size;
     x-> buffer = (float *) calloc (x-> buffer_size + 1 , sizeof(float));
-    x-> circ_p = x-> buffer;
-    x-> s = .0;
+    x-> circular_pointer = x-> buffer;
+    x-> delay_sample = .0;
     x-> delay_in_samples = .0;
     return x;
 }
@@ -17,60 +17,66 @@ void stp_delay_free(stp_delay *x)
     free(x);
 }
 
-void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
+void stp_delay_perform(stp_delay *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vector_size)
 {
     int i = 0;
-    while(i < vectorSize)
+    while(i < vector_size)
     {
-        *(x->circ_p) = in[i];
-        x-> s = tapi(x-> buffer_size, x->delay_in_samples, x-> buffer, x-> circ_p);
-        //out[i] = 0.5 * (in[i] + (x-> s));
-        out[i] = (x-> s);
-        cdelay(x->buffer_size, x->buffer, &(x->circ_p));
+        *(x->circular_pointer) = in[i];
+        x-> delay_sample = stp_delay_interpolate_tap_into_buffer(x-> buffer_size, x->delay_in_samples, x-> buffer, x-> circular_pointer);
+        out[i] = (x-> delay_sample);
+        stp_delay_decrement_circular_pointer(x->buffer_size, x->buffer, &(x->circular_pointer));
         i++;
     }
 }
 
-void stp_delay_setDelay(stp_delay *x, float _delay_in_samples)
+void stp_delay_set_delay(stp_delay *x, float _delay_in_samples)
 {
     if (_delay_in_samples < 0 || _delay_in_samples >= ((x-> buffer_size) - 1))
         _delay_in_samples = 0;
     x->delay_in_samples = _delay_in_samples ;
 }
 
-float tap(long D, float *w, float *p, int i)                   /* usage: si = tap2(D, w, q, i); */   /* i=0,1,...,D */
+float stp_delay_tap_into_buffer(long buffer_size, float *buffer_pointer, float *circular_pointer, int index)
 {
-    return w[(p - w + i) % ((D) + 1)];
+    return buffer_pointer[(circular_pointer - buffer_pointer + index) % ((buffer_size) + 1)];
 }
 
-float tapi(long D, float d, float *w, float *p)                   /* usage: sd = tapi(D, w, p, d); */
-/* d = desired non-integer delay */
-/* p = circular pointer to w */
+float stp_delay_interpolate_tap_into_buffer(long buffer_size, float delay_in_samples, float *buffer_pointer, float *circular_pointer)
 {
+    // positions in buffer to interpolate between
     int i, j;
     float si, sj;
     
-    i = floor(d);                       /* interpolate between si and sj */
-    j = (i + 1) % ((D) + 1);                 /* if i=D, then j=0 otherwise, j=i+1 */
+    // interpolate between si and sj
+    i = floor(delay_in_samples);
+    // if i=D, then j=0 otherwise, j=i+1
+    j = (i + 1) % ((buffer_size) + 1);
     
-    si = tap(D, w, p, i);              /* si(n) = x(n-i) */
-    sj = tap(D, w, p, j);              /* sj(n) = x(n-j) */
-    //printf("%f \n", si);
-    return si + ((d) - i) * (sj - si);
+    // get buffer values by taping into buffer without interpolation
+    // si(n) = x(n-i)
+    si = stp_delay_tap_into_buffer(buffer_size, buffer_pointer, circular_pointer, i);
+    // sj(n) = x(n-j)
+    sj = stp_delay_tap_into_buffer(buffer_size, buffer_pointer, circular_pointer, j);
+
+    return si + ((delay_in_samples) - i) * (sj - si);
 }
 
-void wrap(long M, float *w, float **p)
+void stp_delay_wrap_circular_pointer_to_start(long buffer_size, float *buffer_pointer, float **circular_pointer)
 {
-    if (*p > w + M)
-        *p -= M + 1;          /* when *p=w+M+1, it wraps around to *p=w */
-    
-    if (*p < w)
-        *p += M + 1;          /* when *p=w-1, it wraps around to *p=w+M */
+    // when *circular_pointer=buffer_pointer+buffer_size+1, it wraps around to *circular_pointer=buffer_pointer
+    if (*circular_pointer > buffer_pointer + buffer_size)
+        *circular_pointer -= buffer_size + 1;
+    // when *circular_pointer=buffer_pointer-1, it wraps around to *circular_pointer=buffer_pointer+buffer_size
+    if (*circular_pointer < buffer_pointer)
+        *circular_pointer += buffer_size + 1;
 }
 
-void cdelay(long D, float *w, float **p)
+void stp_delay_decrement_circular_pointer(long buffer_size, float *buffer_pointer, float **circular_pointer)
 {
-    (*p)--;                      /* decrement pointer and wrap modulo-D+1 */
-    wrap(D, w, p);               /* when *p=w-1, it wraps around to *p=w+D */
+    // decrement pointer and wrap modulo-buffer_size+1
+    (*circular_pointer)--;
+    // when *circular_pointer=buffer_pointer-1, it wraps around to *circular_pointer=buffer_pointer+buffer_size
+    stp_delay_wrap_circular_pointer_to_start(buffer_size, buffer_pointer, circular_pointer);
 }
 
