@@ -175,10 +175,10 @@ Related Functions</h2></td></tr>
 <tr class="memdesc:a2b1a7dfa54d7e6a903b2496e5319e2ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates all temporary output buffers. <br />
   <a href="#a2b1a7dfa54d7e6a903b2496e5319e2ab">More...</a><br /></td></tr>
 <tr class="separator:a2b1a7dfa54d7e6a903b2496e5319e2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a694e51a0e4f29ccc542ea24ec8ce7dd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstp__synthetic__reverb.html#a694e51a0e4f29ccc542ea24ec8ce7dd9">stp_synthetic_reverb_set_feedback</a> (<a class="el" href="structstp__synthetic__reverb.html">stp_synthetic_reverb</a> *x, float _feedback)</td></tr>
-<tr class="memdesc:a694e51a0e4f29ccc542ea24ec8ce7dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the feedback value. <br />
-  <a href="#a694e51a0e4f29ccc542ea24ec8ce7dd9">More...</a><br /></td></tr>
-<tr class="separator:a694e51a0e4f29ccc542ea24ec8ce7dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b1bc21d15c2d03084c9ec2f53a8e54b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstp__synthetic__reverb.html#a8b1bc21d15c2d03084c9ec2f53a8e54b">stp_synthetic_reverb_set_room_size</a> (<a class="el" href="structstp__synthetic__reverb.html">stp_synthetic_reverb</a> *x, float _room_size)</td></tr>
+<tr class="memdesc:a8b1bc21d15c2d03084c9ec2f53a8e54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the room_size value. <br />
+  <a href="#a8b1bc21d15c2d03084c9ec2f53a8e54b">More...</a><br /></td></tr>
+<tr class="separator:a8b1bc21d15c2d03084c9ec2f53a8e54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ef4da6c52500e6ff28cf5ada997fee0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstp__synthetic__reverb.html#a1ef4da6c52500e6ff28cf5ada997fee0">stp_synthetic_reverb_set_damping</a> (<a class="el" href="structstp__synthetic__reverb.html">stp_synthetic_reverb</a> *x, float _damping)</td></tr>
 <tr class="memdesc:a1ef4da6c52500e6ff28cf5ada997fee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the _damping value. <br />
   <a href="#a1ef4da6c52500e6ff28cf5ada997fee0">More...</a><br /></td></tr>
@@ -468,8 +468,8 @@ Related Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a694e51a0e4f29ccc542ea24ec8ce7dd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a694e51a0e4f29ccc542ea24ec8ce7dd9">&#9670;&nbsp;</a></span>stp_synthetic_reverb_set_feedback()</h2>
+<a id="a8b1bc21d15c2d03084c9ec2f53a8e54b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b1bc21d15c2d03084c9ec2f53a8e54b">&#9670;&nbsp;</a></span>stp_synthetic_reverb_set_room_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -478,7 +478,7 @@ Related Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void stp_synthetic_reverb_set_feedback </td>
+          <td class="memname">void stp_synthetic_reverb_set_room_size </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstp__synthetic__reverb.html">stp_synthetic_reverb</a> *&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -487,7 +487,7 @@ Related Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>_feedback</em>&#160;</td>
+          <td class="paramname"><em>_room_size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -502,14 +502,14 @@ Related Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the feedback value. <br />
+<p>Sets the room_size value. <br />
  </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>My <a class="el" href="structstp__synthetic__reverb.html" title="A structure for a synthetic reverb object   ">stp_synthetic_reverb</a> object <br />
  </td></tr>
-    <tr><td class="paramname">feedback</td><td>The feedback value <br />
- Sets the feedback value with floating point precision <br />
+    <tr><td class="paramname">feedback</td><td>The room_size value <br />
+ Sets the room_size value with floating point precision <br />
  Calls the set method from stp_comb_filters <br />
  </td></tr>
   </table>

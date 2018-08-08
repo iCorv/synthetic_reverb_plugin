@@ -31,12 +31,12 @@ var searchData=
   ['stp_5fsynthetic_5freverb_5fnew',['stp_synthetic_reverb_new',['../structstp__synthetic__reverb.html#a8588857ee9bf58eaebcf308980ac1167',1,'stp_synthetic_reverb']]],
   ['stp_5fsynthetic_5freverb_5fperform',['stp_synthetic_reverb_perform',['../structstp__synthetic__reverb.html#af385f69d342da49868fe1c9b8bf0a11a',1,'stp_synthetic_reverb']]],
   ['stp_5fsynthetic_5freverb_5fset_5fdamping',['stp_synthetic_reverb_set_damping',['../structstp__synthetic__reverb.html#a1ef4da6c52500e6ff28cf5ada997fee0',1,'stp_synthetic_reverb']]],
-  ['stp_5fsynthetic_5freverb_5fset_5ffeedback',['stp_synthetic_reverb_set_feedback',['../structstp__synthetic__reverb.html#a694e51a0e4f29ccc542ea24ec8ce7dd9',1,'stp_synthetic_reverb']]],
+  ['stp_5fsynthetic_5freverb_5fset_5froom_5fsize',['stp_synthetic_reverb_set_room_size',['../structstp__synthetic__reverb.html#a8b1bc21d15c2d03084c9ec2f53a8e54b',1,'stp_synthetic_reverb']]],
   ['stp_5fsynthetic_5freverb_5ftilde_5fdsp',['stp_synthetic_reverb_tilde_dsp',['../structstp__synthetic__reverb__tilde.html#ad3570131f19c433914c0326e21812175',1,'stp_synthetic_reverb_tilde']]],
   ['stp_5fsynthetic_5freverb_5ftilde_5ffree',['stp_synthetic_reverb_tilde_free',['../structstp__synthetic__reverb__tilde.html#a52b8ab8409d61791f21ced09605a04ff',1,'stp_synthetic_reverb_tilde']]],
   ['stp_5fsynthetic_5freverb_5ftilde_5fnew',['stp_synthetic_reverb_tilde_new',['../structstp__synthetic__reverb__tilde.html#af12805b17cd05b5ed1143782fbede971',1,'stp_synthetic_reverb_tilde']]],
   ['stp_5fsynthetic_5freverb_5ftilde_5fperform',['stp_synthetic_reverb_tilde_perform',['../structstp__synthetic__reverb__tilde.html#ab35deab6d15a334c87f6781f899f149b',1,'stp_synthetic_reverb_tilde']]],
-  ['stp_5fsynthetic_5freverb_5ftilde_5fset_5fdamping',['stp_synthetic_reverb_tilde_set_damping',['../structstp__synthetic__reverb__tilde.html#a7abb5501ffa4060a2808ece2c4de8de2',1,'stp_synthetic_reverb_tilde']]],
-  ['stp_5fsynthetic_5freverb_5ftilde_5fset_5ffeedback',['stp_synthetic_reverb_tilde_set_feedback',['../structstp__synthetic__reverb__tilde.html#aac1fe97dc05f40b29497829d9c95b88c',1,'stp_synthetic_reverb_tilde']]],
+  ['stp_5fsynthetic_5freverb_5ftilde_5fset_5fdamping',['stp_synthetic_reverb_tilde_set_damping',['../structstp__synthetic__reverb__tilde.html#a3f35a8fc59710995421e0cf5899b155d',1,'stp_synthetic_reverb_tilde']]],
+  ['stp_5fsynthetic_5freverb_5ftilde_5fset_5froom_5fsize',['stp_synthetic_reverb_tilde_set_room_size',['../structstp__synthetic__reverb__tilde.html#a302bfb56cae0a0c28dba20b84299d02f',1,'stp_synthetic_reverb_tilde']]],
   ['stp_5fsynthetic_5freverb_5ftilde_5fsetup',['stp_synthetic_reverb_tilde_setup',['../structstp__synthetic__reverb__tilde.html#a5918f1a39454f8dc430dcc3b98777cfe',1,'stp_synthetic_reverb_tilde']]]
 ];
