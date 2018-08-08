@@ -24,19 +24,19 @@
 /**
  * @struct stp_delay
  * @brief A structure for a delay object <br>
- * @var stp::buffer The buffer we save the incoming signal in <br>
- * @var stp::delay_in_samples The parameter value for adjusting the <br>
+ * @var stp_delay::buffer The buffer we save the incoming signal in <br>
+ * @var stp_delay::delay_in_samples The parameter value for adjusting the <br>
  * delay of the incoming signal
- * @var stp::buffer_size The size of the delay buffer <br>
- * @var stp::circular_pointer Circular pointer to the delay buffer <br>
- * @var stp::delay_sample The current sample from the delay buffer <br>
+ * @var stp_delay::buffer_size The size of the delay buffer <br>
+ * @var stp_delay::circular_pointer Circular pointer to the delay buffer <br>
+ * @var stp_delay::delay_sample The current sample from the delay buffer <br>
  */
 typedef struct stp_delay
 {
-    float* buffer;              /**< Our delay buffer */
+    float *buffer;              /**< Our delay buffer */
     float delay_in_samples;     /**< Our delay in samples */
     long buffer_size;           /**< Size of the delay buffer */
-    float* circular_pointer;    /**< Circular pointer to delay buffer */
+    float *circular_pointer;    /**< Circular pointer to delay buffer */
     float delay_sample;         /**< The current sample from the delay buffer */
 } stp_delay;
 
