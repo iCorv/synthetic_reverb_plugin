@@ -6,7 +6,7 @@
  * @brief A synthetic reverb object for adding adjustable reverb to a signal <br>
  * <br>
  * stp_synthetic_reverb allows for adding adjustable reverb to <br>
- * any incoming audio signal. <br>
+ * any incoming audio signal. For more information please refer to the <a href = "http://www.aes.org/e-lib/browse.cfm?elib=18307" > AES Paper on AmbiFreeVerb 2 </a> <br>
  * <br>
  */
 
@@ -132,13 +132,13 @@ void stp_synthetic_reverb_allocate_temp_buffer(stp_synthetic_reverb *x, int vect
 
 /**
  * @related stp_synthetic_reverb
- * @brief Sets the feedback value. <br>
+ * @brief Sets the room_size value. <br>
  * @param x My stp_synthetic_reverb object <br>
- * @param feedback The feedback value <br>
- * Sets the feedback value with floating point precision <br>
+ * @param feedback The room_size value <br>
+ * Sets the room_size value with floating point precision <br>
  * Calls the set method from stp_comb_filters <br>
  */
-void stp_synthetic_reverb_set_feedback(stp_synthetic_reverb *x, float _feedback);
+void stp_synthetic_reverb_set_room_size(stp_synthetic_reverb *x, float _room_size);
 
 /**
  * @related stp_synthetic_reverb

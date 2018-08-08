@@ -1,0 +1,30 @@
+#N canvas 644 226 755 460 10;
+#X obj 146 345 dac~;
+#X obj 333 110 openpanel;
+#X msg 333 148 open \$1;
+#X obj 330 204 readsf~;
+#X obj 338 63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 433 136 1;
+#X text 371 61 1 Hier klicken um eine .wav auszuwaelen;
+#X text 475 136 2 Hier klicken um Audio zu starten;
+#X msg 173 200 damping \$1;
+#X obj 18 154 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 11100 1;
+#X obj 175 154 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 11500 1;
+#X text 371 61 1 Hier klicken um eine .wav auszuwaelen;
+#X obj 151 294 stp_synthetic_reverb~;
+#X msg 35 231 room_size \$1;
+#X text 19 118 Room size und Damping zwischen 0 und 1!;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 12 0;
+#X connect 4 0 1 0;
+#X connect 5 0 3 0;
+#X connect 8 0 12 0;
+#X connect 9 0 13 0;
+#X connect 10 0 8 0;
+#X connect 12 0 0 0;
+#X connect 12 0 0 1;
+#X connect 13 0 12 0;

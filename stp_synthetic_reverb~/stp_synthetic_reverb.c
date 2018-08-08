@@ -115,19 +115,19 @@ void stp_synthetic_reverb_comb_filter_sum_up(stp_synthetic_reverb *x, int vector
 }
 
 
-void stp_synthetic_reverb_set_feedback(stp_synthetic_reverb *x, float _feedback)
+void stp_synthetic_reverb_set_room_size(stp_synthetic_reverb *x, float _room_size)
 {
     // feedback scale according to empirical testing 0.7 - 0.98 -> span is 0.28
     // feedback input between 0 and 1!
-    _feedback = 0.7 + (0.28 * _feedback);
-    stp_comb_filter_set_feedback(x->comb_1, _feedback);
-    stp_comb_filter_set_feedback(x->comb_2, _feedback);
-    stp_comb_filter_set_feedback(x->comb_3, _feedback);
-    stp_comb_filter_set_feedback(x->comb_4, _feedback);
-    stp_comb_filter_set_feedback(x->comb_5, _feedback);
-    stp_comb_filter_set_feedback(x->comb_6, _feedback);
-    stp_comb_filter_set_feedback(x->comb_7, _feedback);
-    stp_comb_filter_set_feedback(x->comb_8, _feedback);
+    _room_size = 0.7 + (0.28 * _room_size);
+    stp_comb_filter_set_feedback(x->comb_1, _room_size);
+    stp_comb_filter_set_feedback(x->comb_2, _room_size);
+    stp_comb_filter_set_feedback(x->comb_3, _room_size);
+    stp_comb_filter_set_feedback(x->comb_4, _room_size);
+    stp_comb_filter_set_feedback(x->comb_5, _room_size);
+    stp_comb_filter_set_feedback(x->comb_6, _room_size);
+    stp_comb_filter_set_feedback(x->comb_7, _room_size);
+    stp_comb_filter_set_feedback(x->comb_8, _room_size);
 }
 
 void stp_synthetic_reverb_set_damping(stp_synthetic_reverb *x, float _damping)

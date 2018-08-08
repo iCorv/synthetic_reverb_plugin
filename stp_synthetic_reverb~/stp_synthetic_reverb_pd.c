@@ -103,30 +103,30 @@ void *stp_synthetic_reverb_tilde_new()
 
 /**
  * @related stp_synthetic_reverb_tilde
- * @brief Sets the feedback value. <br>
+ * @brief Sets the room_size value. <br>
  * @param x My stp_synthetic_reverb_tilde object <br>
- * @param feedback The feedback  value <br>
- * Sets the feedback value with floating point precision <br>
+ * @param _room_size The room_size value <br>
+ * Sets the room_size value with floating point precision <br>
  * Calls the set method from stp_synthetic_reverb <br>
  */
-void stp_synthetic_reverb_tilde_set_feedback(stp_synthetic_reverb_tilde *x, float feedback)
+void stp_synthetic_reverb_tilde_set_room_size(stp_synthetic_reverb_tilde *x, float _room_size)
 {
-    if(feedback)
-        stp_synthetic_reverb_set_feedback(x->synthetic_reverb, feedback);
+    if(_room_size)
+        stp_synthetic_reverb_set_room_size(x->synthetic_reverb, _room_size);
 }
 
 /**
  * @related stp_synthetic_reverb_tilde
  * @brief Sets the damping value. <br>
  * @param x My stp_synthetic_reverb_tilde object <br>
- * @param damping The damping value <br>
+ * @param _damping The damping value <br>
  * Sets the damping value with floating point precision <br>
  * Calls the set method from stp_synthetic_reverb <br>
  */
-void stp_synthetic_reverb_tilde_set_damping(stp_synthetic_reverb_tilde *x, float damping)
+void stp_synthetic_reverb_tilde_set_damping(stp_synthetic_reverb_tilde *x, float _damping)
 {
-    if(damping)
-        stp_synthetic_reverb_set_damping(x->synthetic_reverb, damping);
+    if(_damping)
+        stp_synthetic_reverb_set_damping(x->synthetic_reverb, _damping);
 }
  
 
@@ -146,7 +146,7 @@ void stp_synthetic_reverb_tilde_setup(void)
                                       A_DEFFLOAT, 0);
     
     class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_dsp, gensym("dsp"), 0);
-    class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_set_feedback, gensym("feedback"), A_DEFFLOAT, 0);
+    class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_set_room_size, gensym("room_size"), A_DEFFLOAT, 0);
     class_addmethod(stp_synthetic_reverb_tilde_class, (t_method)stp_synthetic_reverb_tilde_set_damping, gensym("damping"), A_DEFFLOAT, 0);
     
     CLASS_MAINSIGNALIN(stp_synthetic_reverb_tilde_class, stp_synthetic_reverb_tilde, f);
