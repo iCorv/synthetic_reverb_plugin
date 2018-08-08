@@ -34,13 +34,41 @@ typedef struct stp_low_pass
 /**
  * @related stp_low_pass
  * @brief Creates a new lowpass object<br>
- * The function sets the buffer size and delay parameter of <br>
- * the delay class
- * @return a pointer to the newly created stp_delay object <br>
+ * The function sets the default parameter of <br>
+ * the lowpass class
+ * @return a pointer to the newly created stp_low_pass object <br>
  */
 stp_low_pass* stp_low_pass_new(void);
+
+/**
+ * @related stp_low_pass
+ * @brief Frees a lowpass object<br>
+ * @param x My lowpass object <br>
+ * The function frees the allocated memory<br>
+ * of a lowpass object
+ */
 void stp_low_pass_free(stp_low_pass *x);
+
+/**
+ * @related stp_low_pass
+ * @brief Sets the cut off frequency value. <br>
+ * @param x My lowpass object <br>
+ * @param _cutoff The cut off frequency <br>
+ * Sets the cut off frequency value with floating point precision. <br>
+ * Values exceeding 0 <= cut-off <= 1 are set to 0 or 1 accordingly <br>
+ */
 void stp_low_pass_setCutoff(stp_low_pass *x, float _delay_in_samples);
+
+/**
+ * @related stp_low_pass
+ * @brief Performs the lowpass filter in realtime. <br>
+ * @param x My lowpass filter object <br>
+ * @param in The input vector <br>
+ * @param out The output vector <br>
+ * @param vector_size The size of the i/o vectors <br>
+ * The function stp_low_pass_perform filters any incoming signal <br>
+ * with a single pole lowpass filter and copies the result to the output vector <br>
+ */
 void stp_low_pass_perform(stp_low_pass *x, float *in, float *out, int vectorSize);
 
 #endif /* stp_low_pass_h */

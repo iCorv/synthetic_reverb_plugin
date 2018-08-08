@@ -1,14 +1,12 @@
 /**
- * @file stp_delay_pd.c
- * @author Thomas Resch <br>
- * Audiocommunication Group, Technical University Berlin <br>
- * University of Applied Sciences Nordwestschweiz (FHNW), Music-Academy, Research and Development <br>
- * A gain object for pure data <br>
+ * @file stp_synthetic_reverb_pd.c
+ * @author C.Jaedicke, A.Monciero, P.Schuhladen, F.Müller <br>
+ * A synthetic reverb object for pure data <br>
  * <br>
- * @brief A Pure Data gain object for adjusting the volume<br>
+ * @brief A Pure Data synthetic reverb object for adding adjustable reverb to a signal <br>
  * <br>
- * stp_delay~ allows for adjusting the level<br>
- * of any incoming audio signal. <br>
+ * stp_synthetic_reverb~ allows for adding adjustable reverb to <br>
+ * any incoming audio signal. <br>
  * <br>
  */
 
@@ -22,16 +20,14 @@
 static t_class *stp_synthetic_reverb_tilde_class;
 
 /**
- * @struct stp_delay_tilde
- * @brief The Pure Data struct of the stp_delay~ object. <br>
- * @var stp_delay_tilde::x_obj Necessary for every signal object in Pure Data <br>
- * @var stp_delay_tilde::f Also necessary for signal objects, float dummy dataspace <br>
+ * @struct stp_synthetic_reverb_tilde
+ * @brief The Pure Data struct of the stp_synthetic_reverb_tilde~ object. <br>
+ * @var stp_synthetic_reverb_tilde::x_obj Necessary for every signal object in Pure Data <br>
+ * @var stp_synthetic_reverb_tilde::f Also necessary for signal objects, float dummy dataspace <br>
  * for converting a float to signal if no signal is connected (CLASS_MAINSIGNALIN) <br>
- * @var stp_delay_tilde::gain The gain object for the actual signal processing <br>
- * @var stp_delay_tilde::x_out A signal outlet for the adjusted signal
+ * @var stp_synthetic_reverb_tilde::x_out A signal outlet for the adjusted signal
  * level of the incoming signal
  */
-
 typedef struct stp_synthetic_reverb_tilde
 {
     t_object  x_obj;
@@ -41,14 +37,13 @@ typedef struct stp_synthetic_reverb_tilde
 } stp_synthetic_reverb_tilde;
 
 /**
- * @related stp_delay_tilde
- * @brief Calculates the volume adjusted output vector<br>
+ * @related stp_synthetic_reverb_tilde
+ * @brief Calls the synthetic reverb perform method <br>
  * @param w A pointer to the object, input and output vectors. <br>
  * For more information please refer to the Pure Data Docs <br>
- * The function calls the stp_delay_perform method. <br>
+ * The function calls the stp_synthetic_reverb_perform method. <br>
  * @return A pointer to the signal chain right behind the stp_delay_tilde object. <br>
  */
-
 t_int *stp_synthetic_reverb_tilde_perform(t_int *w)
 {
     stp_synthetic_reverb_tilde *x = (stp_synthetic_reverb_tilde *)(w[1]);
@@ -63,9 +58,9 @@ t_int *stp_synthetic_reverb_tilde_perform(t_int *w)
 }
 
 /**
- * @related stp_delay_tilde
- * @brief Adds stp_delay_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_delay_tilde object <br>
+ * @related stp_synthetic_reverb_tilde
+ * @brief Adds stp_synthetic_reverb_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_synthetic_reverb_tilde object <br>
  * @param sp A pointer the input and output vectors <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
@@ -77,9 +72,9 @@ void stp_synthetic_reverb_tilde_dsp(stp_synthetic_reverb_tilde *x, t_signal **sp
 }
 
 /**
- * @related stp_delay_tilde
+ * @related stp_synthetic_reverb_tilde
  * @brief Frees our object. <br>
- * @param x A pointer the stp_delay_tilde object <br>
+ * @param x A pointer the stp_synthetic_reverb_tilde object <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
@@ -90,32 +85,44 @@ void stp_synthetic_reverb_tilde_free(stp_synthetic_reverb_tilde *x)
 }
 
 /**
- * @related stp_delay_tilde
- * @brief Creates a new stp_delay_tilde object.<br>
- * @param f Sets the initial gain value. <br>
+ * @related stp_synthetic_reverb_tilde
+ * @brief Creates a new stp_synthetic_reverb_tilde object.<br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void *stp_synthetic_reverb_tilde_new(t_floatarg f)
+void *stp_synthetic_reverb_tilde_new()
 {
     stp_synthetic_reverb_tilde *x = (stp_synthetic_reverb_tilde *)pd_new(stp_synthetic_reverb_tilde_class);
     
     //The main inlet is created automatically
     x->x_out = outlet_new(&x-> x_obj, &s_signal);
     x-> synthetic_reverb = stp_synthetic_reverb_new();
-    //x->delay = stp_delay_new(44100);
-    //stp_delay_setDelay(x->delay, f);
     
     return (void *)x;
 }
 
-
+/**
+ * @related stp_synthetic_reverb_tilde
+ * @brief Sets the feedback value. <br>
+ * @param x My stp_synthetic_reverb_tilde object <br>
+ * @param feedback The feedback  value <br>
+ * Sets the feedback value with floating point precision <br>
+ * Calls the set method from stp_synthetic_reverb <br>
+ */
 void stp_synthetic_reverb_tilde_set_feedback(stp_synthetic_reverb_tilde *x, float feedback)
 {
     if(feedback)
         stp_synthetic_reverb_set_feedback(x->synthetic_reverb, feedback);
 }
 
+/**
+ * @related stp_synthetic_reverb_tilde
+ * @brief Sets the damping value. <br>
+ * @param x My stp_synthetic_reverb_tilde object <br>
+ * @param damping The damping value <br>
+ * Sets the damping value with floating point precision <br>
+ * Calls the set method from stp_synthetic_reverb <br>
+ */
 void stp_synthetic_reverb_tilde_set_damping(stp_synthetic_reverb_tilde *x, float damping)
 {
     if(damping)
@@ -124,8 +131,8 @@ void stp_synthetic_reverb_tilde_set_damping(stp_synthetic_reverb_tilde *x, float
  
 
 /**
- * @related stp_delay_tilde
- * @brief Setup of stp_delay_tilde <br>
+ * @related stp_synthetic_reverb_tilde
+ * @brief Setup of stp_synthetic_reverb_tilde <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 

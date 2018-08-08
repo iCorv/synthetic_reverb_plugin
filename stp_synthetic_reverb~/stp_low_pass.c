@@ -1,11 +1,3 @@
-//
-//  stp_low_pass.c
-//  stp_synthetic_reverb~
-//
-//  Created by C.Jaedicke on 19.07.18.
-//  Copyright © 2018 Intrinsic Audio. All rights reserved.
-//
-
 #include "stp_low_pass.h"
 
 stp_low_pass* stp_low_pass_new(void)
