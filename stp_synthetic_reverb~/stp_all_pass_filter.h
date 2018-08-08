@@ -1,11 +1,11 @@
 /**
- * @file stp_delay.h
+ * @file stp_all_pass_filter.h
  * @author C.Jaedicke, A.Monciero, P.Schuhladen, F.Müller <br>
- * An interpolated delay <br>
+ * An allpass filter <br>
  * <br>
- * @brief Audio Object for adding delay to the input<br>
+ * @brief Audio Object for adding allpass filter to the input <br>
  * <br>
- * stp_delay allows for delaying<br>
+ * stp_all_pass_filter allows for allpass filtering <br>
  * any incoming audio signal. <br>
  * <br>
  */
@@ -21,11 +21,11 @@
 /**
  * @struct stp_all_pass_filter
  * @brief A structure for a allpass object <br>
- * @var stp::delay_line1 First allpass filter delay line <br>
- * @var stp::delay_line2 Second allpass filter delay line <br>
- * @var stp::delay_line_out1 The buffer we save the first delay line output in <br>
- * @var stp::delay_line_out2 The buffer we save the second delay line output in <br>
- * @var stp::gain Adjustable gain value <br>
+ * @var stp_all_pass_filter::delay_line1 First allpass filter delay line <br>
+ * @var stp_all_pass_filter::delay_line2 Second allpass filter delay line <br>
+ * @var stp_all_pass_filter::delay_line_out1 The buffer we save the first delay line output in <br>
+ * @var stp_all_pass_filter::delay_line_out2 The buffer we save the second delay line output in <br>
+ * @var stp_all_pass_filter::gain Adjustable gain value <br>
  */
  
 typedef struct stp_all_pass_filter
@@ -47,7 +47,7 @@ typedef struct stp_all_pass_filter
 stp_all_pass_filter* stp_all_pass_filter_new();
 
 /**
- * @related stp_allpass_filter
+ * @related stp_all_pass_filter
  * @brief Frees a allpass filter object<br>
  * @param x My allpass filter object <br>
  * The function frees the allocated memory<br>
@@ -56,7 +56,7 @@ stp_all_pass_filter* stp_all_pass_filter_new();
 void stp_all_pass_filter_free(stp_all_pass_filter *x);
 
 /**
- * @related stp_allpass_filter
+ * @related stp_all_pass_filter
  * @brief Performs the allpass filter in realtime. <br>
  * @param x My allpass filter object <br>
  * @param in The input vector <br>
@@ -68,17 +68,17 @@ void stp_all_pass_filter_free(stp_all_pass_filter *x);
 void stp_all_pass_filter_perform(stp_all_pass_filter *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 
 /**
- * @related stp_allpass_filter
+ * @related stp_all_pass_filter
  * @brief Sets the delay time in samples with floating point precision. <br>
  * @param x My allpass filter object <br>
- * @param _delay The delay in samples <br>
+ * @param _delay_in_samples The delay in samples <br>
  * Sets the delay time in samples with floating point precision. <br>
  * Calls the stp_delay set delay function. <br>
  */
 void stp_all_pass_filter_set_delay(stp_all_pass_filter *x, float _delay_in_samples);
 
 /**
- * @related stp_allpass_filter
+ * @related stp_all_pass_filter
  * @brief Sets the gain value. <br>
  * @param x My allpass filter object <br>
  * @param _gain The gain <br>
@@ -88,7 +88,7 @@ void stp_all_pass_filter_set_delay(stp_all_pass_filter *x, float _delay_in_sampl
 void stp_all_pass_filter_set_gain(stp_all_pass_filter *x, float _gain);
 
 /**
- * @related stp_allpass_filter
+ * @related stp_all_pass_filter
  * @brief Allocates temporary buffers to save output of other classes. <br>
  * @param x My allpass filter object <br>
  * @param vector_size The size of the i/o vectors <br>

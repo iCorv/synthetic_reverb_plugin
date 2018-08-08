@@ -34,6 +34,21 @@ float {\bfseries gain}
 \hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$ \hyperlink{structstp__all__pass__filter_a493ebb4f85e462564b6c5d9b16d827b0}{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+new} ()
 \begin{DoxyCompactList}\small\item\em Creates a new allpass filter object~\newline
  The function sets the standard values for the allpass filter. With delay buffer size = 44.\+1k ~\newline
+ \end{DoxyCompactList}\item 
+void \hyperlink{structstp__all__pass__filter_ac79aeee80479d21726015e5d7bf82b7a}{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free} (\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Frees a allpass filter object~\newline
+ \end{DoxyCompactList}\item 
+void \hyperlink{structstp__all__pass__filter_a7401c009025defdd86c122159c7fb15c}{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform} (\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$x, \hyperlink{stp__defines_8h_a142134bffa517ce86ebf0bdcdbe975d2}{S\+T\+P\+\_\+\+I\+N\+P\+U\+T\+V\+E\+C\+T\+OR} $\ast$in, \hyperlink{stp__defines_8h_a0a4fde8c3943f5267ab6f09538b3ac26}{S\+T\+P\+\_\+\+O\+U\+T\+P\+U\+T\+V\+E\+C\+T\+OR} $\ast$out, int vector\+Size)
+\begin{DoxyCompactList}\small\item\em Performs the allpass filter in realtime. ~\newline
+ \end{DoxyCompactList}\item 
+void \hyperlink{structstp__all__pass__filter_ac8171e26fd033e188d707cf3f3354451}{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay} (\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$x, float \+\_\+delay\+\_\+in\+\_\+samples)
+\begin{DoxyCompactList}\small\item\em Sets the delay time in samples with floating point precision. ~\newline
+ \end{DoxyCompactList}\item 
+void \hyperlink{structstp__all__pass__filter_ab4e461c65b5eaabdf3256386645ebbc5}{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain} (\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$x, float \+\_\+gain)
+\begin{DoxyCompactList}\small\item\em Sets the gain value. ~\newline
+ \end{DoxyCompactList}\item 
+void \hyperlink{structstp__all__pass__filter_ab058db273cfc2f4c6364f739d3be60bf}{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer} (\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$x, int vector\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Allocates temporary buffers to save output of other classes. ~\newline
  \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -42,6 +57,46 @@ A structure for a allpass object ~\newline
  
 
 \subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{structstp__all__pass__filter_ab058db273cfc2f4c6364f739d3be60bf}\label{structstp__all__pass__filter_ab058db273cfc2f4c6364f739d3be60bf}} 
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}!stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer}}
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer}!stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}}
+\subsubsection{\texorpdfstring{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer()}{stp\_all\_pass\_filter\_allocate\_temp\_buffer()}}
+{\footnotesize\ttfamily void stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+allocate\+\_\+temp\+\_\+buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$}]{x,  }\item[{int}]{vector\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Allocates temporary buffers to save output of other classes. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My allpass filter object ~\newline
+ \\
+\hline
+{\em vector\+\_\+size} & The size of the i/o vectors ~\newline
+ Allocates temporary buffers to save output of other classes. ~\newline
+ Buffers for delay line output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__all__pass__filter_ac79aeee80479d21726015e5d7bf82b7a}\label{structstp__all__pass__filter_ac79aeee80479d21726015e5d7bf82b7a}} 
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}!stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free}}
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free}!stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}}
+\subsubsection{\texorpdfstring{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free()}{stp\_all\_pass\_filter\_free()}}
+{\footnotesize\ttfamily void stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Frees a allpass filter object~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My allpass filter object ~\newline
+ The function frees the allocated memory~\newline
+ of a allpass filter object \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{structstp__all__pass__filter_a493ebb4f85e462564b6c5d9b16d827b0}\label{structstp__all__pass__filter_a493ebb4f85e462564b6c5d9b16d827b0}} 
 \index{stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}!stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+new@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+new}}
 \index{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+new@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+new}!stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}}
@@ -58,8 +113,80 @@ Creates a new allpass filter object~\newline
 a pointer to the newly created \hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} object ~\newline
  
 \end{DoxyReturn}
+\mbox{\Hypertarget{structstp__all__pass__filter_a7401c009025defdd86c122159c7fb15c}\label{structstp__all__pass__filter_a7401c009025defdd86c122159c7fb15c}} 
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}!stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform}}
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform}!stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}}
+\subsubsection{\texorpdfstring{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform()}{stp\_all\_pass\_filter\_perform()}}
+{\footnotesize\ttfamily void stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+perform (\begin{DoxyParamCaption}\item[{\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$}]{x,  }\item[{\hyperlink{stp__defines_8h_a142134bffa517ce86ebf0bdcdbe975d2}{S\+T\+P\+\_\+\+I\+N\+P\+U\+T\+V\+E\+C\+T\+OR} $\ast$}]{in,  }\item[{\hyperlink{stp__defines_8h_a0a4fde8c3943f5267ab6f09538b3ac26}{S\+T\+P\+\_\+\+O\+U\+T\+P\+U\+T\+V\+E\+C\+T\+OR} $\ast$}]{out,  }\item[{int}]{vector\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Performs the allpass filter in realtime. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My allpass filter object ~\newline
+ \\
+\hline
+{\em in} & The input vector ~\newline
+ \\
+\hline
+{\em out} & The output vector ~\newline
+ \\
+\hline
+{\em vector\+\_\+size} & The size of the i/o vectors ~\newline
+ The function stp\+\_\+allpass\+\_\+filter\+\_\+perform processes the ~\newline
+ incoming signal with a allpass filter and copies the result to the output vector ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__all__pass__filter_ac8171e26fd033e188d707cf3f3354451}\label{structstp__all__pass__filter_ac8171e26fd033e188d707cf3f3354451}} 
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}!stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay}}
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay}!stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}}
+\subsubsection{\texorpdfstring{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay()}{stp\_all\_pass\_filter\_set\_delay()}}
+{\footnotesize\ttfamily void stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+delay (\begin{DoxyParamCaption}\item[{\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$}]{x,  }\item[{float}]{\+\_\+delay\+\_\+in\+\_\+samples }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Sets the delay time in samples with floating point precision. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My allpass filter object ~\newline
+ \\
+\hline
+{\em \+\_\+delay\+\_\+in\+\_\+samples} & The delay in samples ~\newline
+ Sets the delay time in samples with floating point precision. ~\newline
+ Calls the \hyperlink{structstp__delay}{stp\+\_\+delay} set delay function. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__all__pass__filter_ab4e461c65b5eaabdf3256386645ebbc5}\label{structstp__all__pass__filter_ab4e461c65b5eaabdf3256386645ebbc5}} 
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}!stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain}}
+\index{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain@{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain}!stp\+\_\+all\+\_\+pass\+\_\+filter@{stp\+\_\+all\+\_\+pass\+\_\+filter}}
+\subsubsection{\texorpdfstring{stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain()}{stp\_all\_pass\_filter\_set\_gain()}}
+{\footnotesize\ttfamily void stp\+\_\+all\+\_\+pass\+\_\+filter\+\_\+set\+\_\+gain (\begin{DoxyParamCaption}\item[{\hyperlink{structstp__all__pass__filter}{stp\+\_\+all\+\_\+pass\+\_\+filter} $\ast$}]{x,  }\item[{float}]{\+\_\+gain }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Sets the gain value. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My allpass filter object ~\newline
+ \\
+\hline
+{\em \+\_\+gain} & The gain ~\newline
+ Sets the gain value with floating point precision. ~\newline
+ Gain values exceeding 0 $<$ gain $<$ 1 are handelt by setting them to 0 or 1. ~\newline
+ \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/\+Users/\+Jaedicke/\+Documents/\+T\+U\+\_\+\+Berlin/\+Master Akt/\+Audio C++/synthetic\+\_\+reverb\+\_\+plugin/stp\+\_\+synthetic\+\_\+reverb$\sim$/stp\+\_\+all\+\_\+pass\+\_\+filter.\+h\end{DoxyCompactItemize}
+/\+Users/\+Jaedicke/\+Documents/\+T\+U\+\_\+\+Berlin/\+Master Akt/\+Audio C++/synthetic\+\_\+reverb\+\_\+plugin/stp\+\_\+synthetic\+\_\+reverb$\sim$/\hyperlink{stp__all__pass__filter_8h}{stp\+\_\+all\+\_\+pass\+\_\+filter.\+h}\end{DoxyCompactItemize}

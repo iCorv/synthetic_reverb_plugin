@@ -53,6 +53,9 @@ typedef float STP_INPUTVECTOR;
 typedef double STP_INPUTVECTOR;
 #endif
 
+/**
+ * Choose floating point or double precision for i/o vectors.
+ */
 #ifdef STP_OUTPUTVECTOR_USE_FLOAT
 typedef float STP_OUTPUTVECTOR;
 #else
