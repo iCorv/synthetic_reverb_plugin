@@ -14,7 +14,7 @@ stp_comb_filter* stp_comb_filter_new()
     x->feedback = 0;
     x->lowpass = stp_low_pass_new();
     // max delay length is the length of the input vector, always < 44100
-    x->delay_line = stp_delay_new(44100);
+    x->delay_line = stp_delay_new(STANDARD_BUFFER_SIZE);
 
     return (stp_comb_filter*)x;
 }
