@@ -15,14 +15,14 @@ stp_synthetic_reverb *stp_synthetic_reverb_new()
     x-> comb_8 = stp_comb_filter_new();
     
     // set delay of comb filter objects according to pre-calculated values in stp_defines
-    stp_comb_filter_set_delay(x-> comb_1, comb1_delay);
-    stp_comb_filter_set_delay(x-> comb_2, comb2_delay);
-    stp_comb_filter_set_delay(x-> comb_3, comb3_delay);
-    stp_comb_filter_set_delay(x-> comb_4, comb4_delay);
-    stp_comb_filter_set_delay(x-> comb_5, comb5_delay);
-    stp_comb_filter_set_delay(x-> comb_6, comb6_delay);
-    stp_comb_filter_set_delay(x-> comb_7, comb7_delay);
-    stp_comb_filter_set_delay(x-> comb_8, comb8_delay);
+    stp_comb_filter_set_delay(x-> comb_1, COMB1_DELAY);
+    stp_comb_filter_set_delay(x-> comb_2, COMB2_DELAY);
+    stp_comb_filter_set_delay(x-> comb_3, COMB3_DELAY);
+    stp_comb_filter_set_delay(x-> comb_4, COMB4_DELAY);
+    stp_comb_filter_set_delay(x-> comb_5, COMB5_DELAY);
+    stp_comb_filter_set_delay(x-> comb_6, COMB6_DELAY);
+    stp_comb_filter_set_delay(x-> comb_7, COMB7_DELAY);
+    stp_comb_filter_set_delay(x-> comb_8, COMB8_DELAY);
     
     // initialize allpass filter
     x-> ap_1 = stp_all_pass_filter_new();
@@ -31,16 +31,16 @@ stp_synthetic_reverb *stp_synthetic_reverb_new()
     x-> ap_4 = stp_all_pass_filter_new();
     
     // set gain of allpass filter objects according to pre-calculated values in stp_defines
-    stp_all_pass_filter_set_gain(x-> ap_1, ap_gain);
-    stp_all_pass_filter_set_gain(x-> ap_2, ap_gain);
-    stp_all_pass_filter_set_gain(x-> ap_3, ap_gain);
-    stp_all_pass_filter_set_gain(x-> ap_4, ap_gain);
+    stp_all_pass_filter_set_gain(x-> ap_1, AP_GAIN);
+    stp_all_pass_filter_set_gain(x-> ap_2, AP_GAIN);
+    stp_all_pass_filter_set_gain(x-> ap_3, AP_GAIN);
+    stp_all_pass_filter_set_gain(x-> ap_4, AP_GAIN);
     
     // set delay of allpass filter objects according to pre-calculated values in stp_defines
-    stp_all_pass_filter_set_delay(x->ap_1, ap_1_delay);
-    stp_all_pass_filter_set_delay(x->ap_2, ap_2_delay);
-    stp_all_pass_filter_set_delay(x->ap_3, ap_3_delay);
-    stp_all_pass_filter_set_delay(x->ap_4, ap_4_delay);
+    stp_all_pass_filter_set_delay(x->ap_1, AP_1_DELAY);
+    stp_all_pass_filter_set_delay(x->ap_2, AP_2_DELAY);
+    stp_all_pass_filter_set_delay(x->ap_3, AP_3_DELAY);
+    stp_all_pass_filter_set_delay(x->ap_4, AP_4_DELAY);
     
     return (void *)x;
 }

@@ -1,6 +1,6 @@
 /**
  * @file stp_delay.h
- * @author Corvin Jaedicke, Alberto Monciero, Paul <br>
+ * @author C.Jaedicke, A.Monciero, P.Schuhladen, F.Müller <br>
  * An interpolated delay <br>
  * <br>
  * @brief Audio Object for adding delay to the input<br>

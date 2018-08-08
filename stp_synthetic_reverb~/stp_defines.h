@@ -9,20 +9,20 @@
 #ifndef stp_defines_h
 #define stp_defines_h
 
-#define comb1_delay 1116.171
-#define comb2_delay comb1_delay + 71.83
-#define comb3_delay comb1_delay + 160.965
-#define comb4_delay comb1_delay + 239.904
-#define comb5_delay comb1_delay +305.613
-#define comb6_delay comb1_delay + 374.85
-#define comb7_delay comb1_delay + 441
-#define comb8_delay comb1_delay + 500.976
+#define COMB1_DELAY 1116.171
+#define COMB2_DELAY COMB1_DELAY + 71.83
+#define COMB3_DELAY COMB1_DELAY + 160.965
+#define COMB4_DELAY COMB1_DELAY + 239.904
+#define COMB5_DELAY COMB1_DELAY + 305.613
+#define COMB6_DELAY COMB1_DELAY + 374.85
+#define COMB7_DELAY COMB1_DELAY + 441
+#define COMB8_DELAY COMB1_DELAY + 500.976
 
-#define ap_gain 0.5
-#define ap_1_delay 556.101
-#define ap_2_delay 441
-#define ap_3_delay 340.893
-#define ap_4_delay 224.91
+#define AP_GAIN 0.5
+#define AP_1_DELAY 556.101
+#define AP_2_DELAY 441
+#define AP_3_DELAY 340.893
+#define AP_4_DELAY 224.91
 
 
 
